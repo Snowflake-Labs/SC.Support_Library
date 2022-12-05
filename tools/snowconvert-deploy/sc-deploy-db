@@ -24,7 +24,7 @@ import shutil
 import snowflake.connector
 import atexit
 
-DEPLOY_VERSION = '0.0.24'
+DEPLOY_VERSION = '0.0.25'
 
 category_queries = {
     "table"            : "select TABLE_CATALOG     AS DB,TABLE_SCHEMA     AS SCHEMA,TABLE_NAME     AS NAME from information_schema.tables where TABLE_SCHEMA <> 'INFORMATION_SCHEMA' AND TABLE_TYPE='BASE TABLE'",
@@ -126,8 +126,6 @@ def sync_db(conn, input_dir, target_dir,category_arg):
 def thread_function(con, index, max_stmnt, stmnt_q, created_q, failed_q, done_q, progress=None, task=None):
     cur = con.cursor()
     ebuf = []
-    cur.execute("set quoted_identifiers_ignore_case = TRUE")
-    cur.execute("alter session set TIMESTAMP_TYPE_MAPPING = TIMESTAMP_LTZ")
     cur.close()
     Continue = True
     while Continue:

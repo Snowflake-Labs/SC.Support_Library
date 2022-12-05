@@ -81,3 +81,7 @@
 ## Version 0.0.24
 
 - implemented mechanism for parameter substitution
+
+## Version 0.0.25
+
+- remove hard code params
